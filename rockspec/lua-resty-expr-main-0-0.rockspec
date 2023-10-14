@@ -1,7 +1,7 @@
 package = "lua-resty-expr-main"
 version = "0-0"
 source = {
-    url = "https://github.com/api7/lua-resty-expr",
+    url = "git://github.com/api7/lua-resty-expr",
     branch = "main",
 }
 
