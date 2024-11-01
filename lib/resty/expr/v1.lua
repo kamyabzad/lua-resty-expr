@@ -36,12 +36,8 @@ local not_op = "!"
 
 
 local function in_array(l_v, r_v)
-    if type(r_v) == "table" then
-        for _,v in ipairs(r_v) do
-            if v == l_v then
-                return true
-            end
-        end
+    if type(r_v) == "table" and l_v[r_v] ~= nil then
+        return true
     end
     return false
 end
@@ -215,6 +211,17 @@ local function compile_expr(expr)
         end
 
         r_v = ip
+    end
+
+    if op == "in" then
+        local r_v_hash = {}
+
+        if type(r_v) == table then
+            for _, el in ipairs(r_v) do
+                r_v_hash[el] = true
+            end
+
+        r_v = r_v_hash
     end
 
     return {
